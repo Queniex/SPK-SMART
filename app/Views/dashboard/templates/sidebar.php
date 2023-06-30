@@ -47,11 +47,11 @@
                 class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - List SubKategori</a>
             </li>
             <li>
-              <a href="<?= base_url('/product/index'); ?>"
+              <a href="<?= base_url('/category/add'); ?>"
                 class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - [+] Kategori</a>
             </li>
             <li>
-              <a href="<?= base_url('/product/index'); ?>"
+              <a href="<?= base_url('/subcategory/add'); ?>"
                 class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - [+] SubKategori</a>
             </li>
           </ul>
@@ -79,7 +79,7 @@
                 class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - Data Dipilih</a>
             </li>
             <li>
-              <a href="<?= base_url('/product/index'); ?>"
+              <a href="<?= base_url('/spk/final'); ?>"
                 class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - Hitung SMART</a>
             </li>
           </ul>

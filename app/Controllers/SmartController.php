@@ -101,7 +101,7 @@ class SmartController extends BaseController
 
     public function spkCount()
     {
-        $query = $this->db->query("SELECT subkategori.subkategori,subkategori.id_kategori,subkategori.nilai_subkategori, kategori.kategori,choose_data.num_choose FROM subkategori JOIN choose_data ON subkategori.id = choose_data.id_subkategori JOIN kategori ON subkategori.id_kategori = kategori.id WHERE choose_data.id_user = " . $this->user['id'] . " ORDER BY choose_data.num_choose ASC, kategori.kategori DESC ;")->getResult();
+        $query = $this->db->query("SELECT subkategori.subkategori,subkategori.id_kategori,subkategori.nilai_subkategori, kategori.kategori,choose_data.num_choose FROM subkategori JOIN choose_data ON subkategori.id = choose_data.id_subkategori JOIN kategori ON subkategori.id_kategori = kategori.id WHERE choose_data.id_user = 2" . " ORDER BY choose_data.num_choose ASC, kategori.kategori DESC ;")->getResult();
 
       
         if ($query) {

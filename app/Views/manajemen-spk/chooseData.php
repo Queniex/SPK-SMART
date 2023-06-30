@@ -1,69 +1,19 @@
-<?= $this->section('custom-css'); ?>    
-    .content {
-        width: calc(100vw - 250px);
-        height: 100%;
-        box-sizing: border-box;
-        padding: 2rem;
-        padding-left: 10rem;
-        padding-bottom: 1rem;
-        overflow-y: scroll;
-    }
-
-    .title-content {
-        font-weight: bolder;
-        font-size: 2rem;
-        text-shadow: 4px 4px 2px #32FF6A;
-        padding-bottom: 1rem;
-    }
-
-    .form-item {
-        display: flex;
-        flex-direction: column;
-        padding: 1rem 0 1rem 0;
-    }
-
-    .form-item input {
-        padding: 0.5rem;
-        border-radius: 1rem;
-
-        background-color: #00FFAB;
-        border: 2px solid black;
-        margin: 1rem 0 1rem 0;
-
-    }
-    .form-item select {
-        padding: 0.5rem;
-        border-radius: 1rem;
-
-        background-color: #00FFAB;
-        border: 2px solid black;
-        margin: 1rem 0 1rem 0;
-    }
-
-
-    .content button {
-
-        padding: 1rem;
-        border-radius: 1rem;
-        border: 2px solid black;
-        background-color: yellow;
-    }
-<?= $this->endSection(); ?>
-
 <?= $this->extend('dashboard/templates/main'); ?>
 
 <?= $this->section('content'); ?>
-<form action="/spk" method="POST">
-        <div class="content">
-            <p class="title-content">Pemilihan Data</p>
+    <form action="/spk" method="POST">
+        <div class="container w-3/4 py-5 px-5">
+            <p class="font-bold mb-2 text-xl">Isilah Data Berikut :</p>
             <hr>
+            
+            <div class="w-1/2">
             <?php foreach ($data as $item) : ?>
                 <div class="form-item">
-                    <label for="kategori"><?= $item['kategori'] ?></label>
-                    <select name="<?= str_replace(" ", "_",$item['kategori']) ?>">
+                    <label for="kategori" class="block mb-2 mt-5 text-sm font-medium text-gray-900 dark:text-white"><?= $item['kategori'] ?></label>
+                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full mb-3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="<?= str_replace(" ", "_",$item['kategori']) ?>">
                         <?php foreach ($item['subkategori'] as $subitem) : ?>
                         
-                            <option value="<?= $subitem ?>"><?= $subitem ?></option>
+                            <option class="text-white" value="<?= $subitem ?>"><?= $subitem ?></option>
 
                         <?php endforeach; ?>
                     </select>
@@ -72,8 +22,9 @@
             <?php endforeach; ?>
          
             <?php if($data != null) :?>
-                <button type="submit">Add Data</button>
+                <button class="mt-4 py-3 px-3 bg-gray-500 hover:bg-gray-900 hover:text-white rounded-xl" type="submit">Add Data</button>
             <?php endif; ?>
+            </div>
         </div>
     </form>
 <?= $this->endSection(); ?>

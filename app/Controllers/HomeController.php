@@ -65,7 +65,7 @@ class HomeController extends BaseController
     public function addSubCategoryView()
     {
         
-        $kategori = $this->kategori->where('id_user', $this->user['id'])->findAll();
+        $kategori = $this->kategori->where('id_user', 2)->findAll();
         if($kategori){
 
             echo view('manajemen-data/addSubCategory', ['kategori' => $kategori]);
