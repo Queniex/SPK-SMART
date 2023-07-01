@@ -9,10 +9,12 @@
     <div class="mt-3 px-3 py-4 overflow-y-auto">
       <ul class="space-y-2">
         <li>
-          <a href="<?= base_url('/'); ?>"
+          <a href="<?= base_url('/spk'); ?>"
             class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 hover:text-white dark:hover:bg-gray-700">
             <i class="fas fa-home"></i>
-            <span class="ml-3">Dashboard</span>
+            <span class="ml-3">
+            Dashboard
+            </span>
           </a>
         </li>
         <!-- <li>
@@ -71,7 +73,7 @@
           </button>
           <ul id="dropdown-examplex" class="hidden py-1 space-y-1">
             <li>
-              <a href="<?= base_url('/spk'); ?>"
+              <a href="<?= base_url('/spk/choose'); ?>"
                 class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:text-black dark:hover:bg-gray-700 pl-7"> - Pemilihan Data</a>
             </li>
             <li>
@@ -101,7 +103,7 @@
           </a>
         </li> -->
         <li class="mb-2">
-          <a href="#"
+          <a href="<?= base_url('/logout'); ?>"
             class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
             <svg
               class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"

@@ -8,7 +8,7 @@
                 <div class="flex flex-col items-center justify-center">
                     <div class="w-2/3 mt-2 mb-2 flex items-center justify-start">
                         <button class="flex items-center justify-start group relative h-10 w-42 mb-2 px-2 rounded-lg bg-red-500 text-lg shadow">
-                            <span href="/spk/data/delete" class="relative text-black text-sm group-hover:text-white">Reset</span>
+                            <a href="/spk/data/delete" class="relative text-black text-sm group-hover:text-white">Reset</a>
                         </button>
                     </div>
 

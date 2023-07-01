@@ -21,12 +21,16 @@ class SmartController extends BaseController
         $this->chooseData = new ChooseData();
         $this->subkategori = new SubKategori();
         $this->kategori = new Kategori();
-        $this->user = session()->get('user');
+        // $this->user = session()->get('user');
     }
     public function index()
     {
         $data = $this->getSubCategory();
-        return view('manajemen-spk/chooseData', ['data' => $data]);
+        $this->data = [
+            "judul" => "PEMILIHAN DATA",
+            "data" => $data
+        ];
+        return view('manajemen-spk/chooseData', $this->data);
     }
     public function chooseDataAction()
     {
@@ -46,8 +50,6 @@ class SmartController extends BaseController
                 return redirect()->back()->withInput();
             } else {
                 $subkategori = $this->subkategori->Where('subkategori', $this->request->getGetPost(str_replace(" ", "_", $item['kategori'])))->first();
-
-
                 $this->chooseData->insert([
                     'num_choose' => $numChoose,
                     'id_user' => '2',
@@ -95,8 +97,12 @@ class SmartController extends BaseController
             }
         }
 
+        $this->data = [
+            "judul" => "DATA TERPILIH",
+            "data" => $data,
+        ];
 
-        return view('/manajemen-spk/dataChoosen', ['data' => $data]);
+        return view('/manajemen-spk/dataChoosen', $this->data);
     }
 
     public function spkCount()
@@ -207,8 +213,14 @@ class SmartController extends BaseController
                 $b++;
             }
            
+            $this->data = [
+                "judul" => "HASIL PERHITUNGAN",
+                'nilai_normalisasi' => $nilai_normalisasi,
+                'data' => $data, 
+                'nilai_spk' => $nilai_spk
+            ];
          
-            echo view('manajemen-spk/spkCount', ['nilai_normalisasi' => $nilai_normalisasi, 'data' => $data, 'nilai_spk' => $nilai_spk]);
+            echo view('manajemen-spk/spkCount', $this->data);
         }else{
             return redirect()->to('/cempty');
         }
@@ -250,7 +262,7 @@ class SmartController extends BaseController
     }
 
     public function deleteDataChoosen(){
-        $data = $this->chooseData->where('id_user',$this->user['id'])->findAll();
+        $data = $this->chooseData->where('id_user',2)->findAll();
         foreach ($data as $key) {
             $this->chooseData->delete($key['id']);
         }

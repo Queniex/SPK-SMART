@@ -1,22 +1,35 @@
 <?php
 
 namespace App\Controllers;
-use App\Controllers\BaseController;
+
+use App\Models\User;
+use App\Models\Kategori;
+use App\Models\SubKategori;
+// use App\Models\TransactionModel;
+// // use \Config\Services;
+// use App\Controllers\BaseController;
+// use Config\Services;
 
 class UserController extends BaseController
 {
 
-
+    protected $username, $role;
     public function __construct()
     {
-
+        $this->model = new User();
+        $this->kategori = new Kategori();
+        $this->subkategori = new SubKategori();
+        // $this->transaction = new TransactionModel();
+        // $this->data['session'] = \Config\Services::session();
     }
 
     public function index()
     {
         //
         $this->data = [
-            "page-title" => "Dashboard"
+            "judul" => "dashboard",
+            "jlh_kategori" => count($this->kategori->findAll()),
+            "jlh_subkategori" => count($this->subkategori->findAll()),
         ];
         return view('dashboard/index', $this->data);
     }
@@ -25,7 +38,7 @@ class UserController extends BaseController
     {
         //
         $this->data = [
-            "page-title" => "Dashboard"
+            "judul" => "dashboard"
         ];
         return view('login-register/login', $this->data);
     }
@@ -53,24 +66,17 @@ class UserController extends BaseController
 
         $filterData = [
             "username" => esc($dataInput['username']),
-            "email" => esc($dataInput['email']),
             "password" => password_hash(esc($dataInput['password']), PASSWORD_BCRYPT),
+            "role" => "user"
         ];
 
         $rulesSet = [
             "username" => [
-                "rules" => "required|max_length[8]|is_unique[master_pengguna.username]",
+                "rules" => "required|max_length[8]|is_unique[user.username]",
                 "errors" => [
                     "required" => "Harap isi {field} terlebih dahulu",
                     "max_length" => "{field} maksimal karakter 20",
                     "is_unique" => "{field} sudah terdaftar",
-                ]
-            ],
-            "email" => [
-                "rules" => "required|valid_email",
-                "errors" => [
-                    "required" => "Harap isi {field} terlebih dahulu",
-                    "valid_email" => "format {field} salah",
                 ]
             ],
             "password" => [
@@ -129,24 +135,24 @@ class UserController extends BaseController
             $password = $login_account['password'];
             if (password_verify($filterData['password'], $password)) {
 
-                if ($role == "admin") {
-                    session()->set([
-                        'role' => 'admin',
-                        'logged_in' => $login_account
-                    ]);
-                    return redirect()->to(base_url('/dashboard'));
-                } else if ($role == "kasir") {
-                    session()->set([
-                        'role' => 'kasir',
-                        'logged_in' => $login_account
-                    ]);
-                    return redirect()->to(base_url('/dashboard'));
+                // if ($role == "admin") {
+                //     session()->set([
+                //         'role' => 'admin',
+                //         'logged_in' => $login_account
+                //     ]);
+                //     return redirect()->to(base_url('/'));
+                // } else if ($role == "kasir") {
+                //     session()->set([
+                //         'role' => 'kasir',
+                //         'logged_in' => $login_account
+                //     ]);
+                    return redirect()->to(base_url('/'));
                 } else {
                     session()->setFlashdata('Gagal', "Role tidak dikenali, silahkan login kembali");
                     return redirect()->back();
                 }
             }
-        }
+        // }
 
         // Kalo ga ditemukan
         return redirect()->to(base_url('/login'))->with('not_found', 'Username atau password salah');

@@ -11,7 +11,7 @@ $routes = Services::routes();
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('UserController');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -30,12 +30,12 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-$routes->get('/', 'UserController::index');
 $routes->group('', function ($routes) {
     $routes->get('/register', 'UserController::register');
     $routes->post('/register', 'UserController::store');
     $routes->get('/login', 'UserController::login');
     $routes->post('/login', 'UserController::authenticate');
+    $routes->get('/spk', 'UserController::index');
 });
 
 $routes->group('', function ($routes) {
@@ -48,16 +48,15 @@ $routes->group('', function ($routes) {
         $routes->get('/subcategory/add', 'HomeController::addSubCategoryView');
         $routes->post('/subcategory/add', 'HomeController::addSubCategory');
     });
-    $routes->get('/home', 'Home::index');
-    $routes->get('/petunjuk', 'UserController::petunjuk');
     $routes->get('/spk/data/delete', 'SmartController::deleteDataChoosen');
-    $routes->get('/spk', 'SmartController::index');
-    $routes->post('/spk', 'SmartController::chooseDataAction');
+    $routes->get('/spk/choose', 'SmartController::index');
+    $routes->post('/spk/choose', 'SmartController::chooseDataAction');
     $routes->get('/spk/data', 'SmartController::dataChoosen');
     $routes->get('/spk/final', 'SmartController::spkCount');
     $routes->get('/cempty', 'SmartController::cempty');
     $routes->get('/logout', 'UserController::logout');
 });
+
 
 /*
  * --------------------------------------------------------------------

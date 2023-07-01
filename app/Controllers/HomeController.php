@@ -24,14 +24,17 @@ class HomeController extends BaseController
     public function index()
     {
         $this->data = [
-            "page-title" => "kategori"
+            "judul" => "LIST KATEGORI"
         ];
         return view('manajemen-data/category', $this->data);
     }
 
     public function addCategoryView()
     {
-        echo view('manajemen-data/addCategory');
+        $this->data = [
+            "judul" => "TAMBAH KATEGORI [+]"
+        ];
+        echo view('manajemen-data/addCategory', $this->data);
     }
 
     public function addCategory()
@@ -67,8 +70,11 @@ class HomeController extends BaseController
         
         $kategori = $this->kategori->where('id_user', 2)->findAll();
         if($kategori){
-
-            echo view('manajemen-data/addSubCategory', ['kategori' => $kategori]);
+            $this->data = [
+                "judul" => "TAMBAH SUB-KATEGORI [+]",
+                "kategori" => $kategori
+            ];
+            echo view('manajemen-data/addSubCategory', $this->data);
         }else{
             return view('errors/kempty');
         }
@@ -101,8 +107,6 @@ class HomeController extends BaseController
                 'nilai_subkategori' => $nilai_subkategori,
 
             ]);
-
-
             return redirect()->back();
         }
     }
@@ -112,7 +116,11 @@ class HomeController extends BaseController
 
     $query = $this->db->query("SELECT kategori.kategori,kategori.nilai_bobot,subkategori.id_kategori,subkategori.subkategori,subkategori.nilai_subkategori FROM `subkategori` JOIN kategori ON kategori.id = subkategori.id_kategori ");
     if($query){
-        echo view('manajemen-data/subcategory',["query" => $query->getResult()]);
+        $this->data = [
+            "judul" => "LIST SUB-KATEGORI",
+            "query" => $query->getResult()
+        ];
+        echo view('manajemen-data/subcategory',$this->data);
     }else{
         echo view('errors/kempty');
     }
@@ -121,7 +129,7 @@ class HomeController extends BaseController
     public function category(){
         $kategori = $this->kategori->findAll();
         $this->data = [
-            "page-title" => "kategori",
+            "judul" => "LIST KATEGORI",
             "kategori" => $kategori,
         ];
         if(!$kategori){

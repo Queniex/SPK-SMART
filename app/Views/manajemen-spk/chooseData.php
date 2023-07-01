@@ -1,7 +1,7 @@
 <?= $this->extend('dashboard/templates/main'); ?>
 
 <?= $this->section('content'); ?>
-    <form action="/spk" method="POST">
+    <form action="/spk/choose" method="POST">
         <div class="container w-3/4 py-5 px-5">
             <p class="font-bold mb-2 text-xl">Isilah Data Berikut :</p>
             <hr>

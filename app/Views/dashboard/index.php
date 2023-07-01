@@ -47,7 +47,7 @@
             class="relative flex flex-col items-center justify-center h-full py-10 duration-300 bg-white rounded-sm transition-color sm:items-stretch sm:flex-row">
             <div class="px-12 py-4 text-center">
               <h6 class="text-4xl font-bold text-green-600 sm:text-5xl">
-                5
+                <?= $jlh_kategori; ?>
               </h6>
               <p class="text-center md:text-base">
                 Kategori
@@ -58,7 +58,7 @@
             </div>
             <div class="px-12 py-4 text-center">
               <h6 class="text-4xl font-bold text-blue-600 sm:text-5xl">
-                15
+                <?= $jlh_subkategori; ?>
               </h6>
               <p class="text-center md:text-base">
                 SubKategori
