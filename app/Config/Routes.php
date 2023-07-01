@@ -31,12 +31,12 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 $routes->get('/', 'UserController::index');
-// $routes->group('', function ($routes) {
-//     $routes->get('/register', 'Auth::register');
-//     $routes->post('/register', 'Auth::registerAction');
-//     $routes->get('/login', 'Auth::login');
-//     $routes->post('/login', 'Auth::loginAction');
-// });
+$routes->group('', function ($routes) {
+    $routes->get('/register', 'UserController::register');
+    $routes->post('/register', 'UserController::store');
+    $routes->get('/login', 'UserController::login');
+    $routes->post('/login', 'UserController::authenticate');
+});
 
 $routes->group('', function ($routes) {
     $routes->get('/category', 'HomeController::category');
@@ -49,14 +49,14 @@ $routes->group('', function ($routes) {
         $routes->post('/subcategory/add', 'HomeController::addSubCategory');
     });
     $routes->get('/home', 'Home::index');
-    $routes->get('/petunjuk', 'Auth::petunjuk');
+    $routes->get('/petunjuk', 'UserController::petunjuk');
     $routes->get('/spk/data/delete', 'SmartController::deleteDataChoosen');
     $routes->get('/spk', 'SmartController::index');
     $routes->post('/spk', 'SmartController::chooseDataAction');
     $routes->get('/spk/data', 'SmartController::dataChoosen');
     $routes->get('/spk/final', 'SmartController::spkCount');
     $routes->get('/cempty', 'SmartController::cempty');
-    $routes->get('/logout', 'Auth::logout');
+    $routes->get('/logout', 'UserController::logout');
 });
 
 /*

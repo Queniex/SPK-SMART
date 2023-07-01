@@ -43,7 +43,7 @@ class UserController extends BaseController
         // $this->data['validation'] = \Config\Services::validation();
         // d($this->session);
         // d($this->data['validation']);
-        return view('login-register/register', $this->data);
+        return view('login-register/register');
     }
 
     public function store()
