@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\SubKategori;
 use App\Models\User;
 use Exception;
+use Config\Services;
 
 class SmartController extends BaseController
 {
@@ -21,7 +22,8 @@ class SmartController extends BaseController
         $this->chooseData = new ChooseData();
         $this->subkategori = new SubKategori();
         $this->kategori = new Kategori();
-        // $this->user = session()->get('user');
+        $this->data['session'] = \Config\Services::session();
+        $this->user = session()->get('user');
     }
     public function index()
     {

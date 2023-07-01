@@ -9,8 +9,8 @@
     </button>
     <button x-show="isOpen" @click="isOpen = false" class="h-full w-full fixed inset-0 cursor-default"></button>
     <div x-show="isOpen" class="absolute w-32 bg-white rounded-lg shadow-lg py-2 mt-16">
-      <p class="block px-4 py-2 text-center font-bold">Username</p>
-      <p class="block px-4 py-2 text-center font-bold text-blue-500">Roles</p>
+      <p class="block px-4 py-2 text-center font-bold"><?= strtoupper(session()->get('logged_in')['username']); ?></p>
+      <p class="block px-4 py-2 text-center font-bold text-blue-500"><?= strtoupper(session()->get('logged_in')['role']); ?></p>
       <hr>
       <a href="/logout" class="block px-4 py-2 account-link hover:text-white text-center">Log Out</a>
     </div>

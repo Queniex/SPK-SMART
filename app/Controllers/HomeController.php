@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Kategori;
 use App\Models\SubKategori;
 use App\Models\User;
+use Config\Services;
 
 class HomeController extends BaseController
 {
@@ -19,6 +20,7 @@ class HomeController extends BaseController
         $this->subkategori = new SubKategori();
         $this->kategori = new Kategori();
         $this->user = session()->get('user');
+        $this->data['session'] = \Config\Services::session();
     }
 
     public function index()

@@ -1,7 +1,7 @@
 <aside class="relative h-screen w-64 bg-gray-200 hidden sm:block shadow-xl">
   <div class="p-6">
     <a href="index.html" class="text-black text-2xl font-semibold uppercase hover:text-gray-300">SPK SMART</a>
-    <h1 class="text-blue-800">ADMIN</h1>
+    <h1 class="text-blue-800"><?= strtoupper(session()->get('logged_in')['role']); ?></h1>
     <hr>
   </div>
 
@@ -26,38 +26,41 @@
               class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">3</span>
           </a>
         </li> -->
-        <li>
-          <button type="button"
-            class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 hover:text-white dark:text-white dark:hover:bg-gray-700"
-            aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
-            <i class="fas fa-file-alt"></i>
-            <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Kelola Data</span>
-            <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                clip-rule="evenodd"></path>
-            </svg>
-          </button>
-          <ul id="dropdown-example" class="hidden py-1 space-y-1">
-            <li>
-              <a href="<?= base_url('/category'); ?>"
-                class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - List Kategori</a>
-            </li>
-            <li>
-              <a href="<?= base_url('/subcategory'); ?>"
-                class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - List SubKategori</a>
-            </li>
-            <li>
-              <a href="<?= base_url('/category/add'); ?>"
-                class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - [+] Kategori</a>
-            </li>
-            <li>
-              <a href="<?= base_url('/subcategory/add'); ?>"
-                class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - [+] SubKategori</a>
-            </li>
-          </ul>
-        </li>
+        <?php if(session()->get('logged_in')['role'] == 'admin') : ?>
+          <li>
+            <button type="button"
+              class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 hover:text-white dark:text-white dark:hover:bg-gray-700"
+              aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+              <i class="fas fa-file-alt"></i>
+              <span class="flex-1 ml-3 text-left whitespace-nowrap" sidebar-toggle-item>Kelola Data</span>
+              <svg sidebar-toggle-item class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <ul id="dropdown-example" class="hidden py-1 space-y-1">
+              <li>
+                <a href="<?= base_url('/category'); ?>"
+                  class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - List Kategori</a>
+              </li>
+              <li>
+                <a href="<?= base_url('/subcategory'); ?>"
+                  class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - List SubKategori</a>
+              </li>
+              <li>
+                <a href="<?= base_url('/category/add'); ?>"
+                  class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - [+] Kategori</a>
+              </li>
+              <li>
+                <a href="<?= base_url('/subcategory/add'); ?>"
+                  class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - [+] SubKategori</a>
+              </li>
+            </ul>
+          </li>
+        <?php endif; ?>
+
         <li>
           <button type="button"
             class="flex items-center w-full p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:text-white dark:hover:bg-gray-700"

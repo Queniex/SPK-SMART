@@ -6,14 +6,13 @@ use App\Models\User;
 use App\Models\Kategori;
 use App\Models\SubKategori;
 // use App\Models\TransactionModel;
-// // use \Config\Services;
 // use App\Controllers\BaseController;
-// use Config\Services;
+use Config\Services;
 
 class UserController extends BaseController
 {
 
-    protected $username, $role;
+    protected $username, $role, $session;
     public function __construct()
     {
         $this->model = new User();
@@ -27,7 +26,7 @@ class UserController extends BaseController
     {
         //
         $this->data = [
-            "judul" => "dashboard",
+            "judul" => "Dashboard",
             "jlh_kategori" => count($this->kategori->findAll()),
             "jlh_subkategori" => count($this->subkategori->findAll()),
         ];
@@ -38,7 +37,7 @@ class UserController extends BaseController
     {
         //
         $this->data = [
-            "judul" => "dashboard"
+            "judul" => "login"
         ];
         return view('login-register/login', $this->data);
     }
@@ -134,27 +133,26 @@ class UserController extends BaseController
         if ($login_account) {
             $password = $login_account['password'];
             if (password_verify($filterData['password'], $password)) {
-
-                // if ($role == "admin") {
-                //     session()->set([
-                //         'role' => 'admin',
-                //         'logged_in' => $login_account
-                //     ]);
-                //     return redirect()->to(base_url('/'));
-                // } else if ($role == "kasir") {
-                //     session()->set([
-                //         'role' => 'kasir',
-                //         'logged_in' => $login_account
-                //     ]);
-                    return redirect()->to(base_url('/'));
+                if ($role == "admin") {
+                    session()->set([
+                        'role' => 'admin',
+                        'logged_in' => $login_account
+                    ]);
+                    return redirect()->to(base_url('/spk'));
+                } else if ($role == "user") {
+                    session()->set([
+                        'role' => 'user',
+                        'logged_in' => $login_account
+                    ]);
+                    return redirect()->to(base_url('/spk'));
                 } else {
                     session()->setFlashdata('Gagal', "Role tidak dikenali, silahkan login kembali");
                     return redirect()->back();
                 }
             }
-        // }
+        }
 
-        // Kalo ga ditemukan
+        // Apabila tidak ditemukan
         return redirect()->to(base_url('/login'))->with('not_found', 'Username atau password salah');
     }
 

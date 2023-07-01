@@ -30,18 +30,20 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-$routes->group('', function ($routes) {
+$routes->group('', ['filter' => 'guest'], function ($routes) {
     $routes->get('/register', 'UserController::register');
     $routes->post('/register', 'UserController::store');
     $routes->get('/login', 'UserController::login');
     $routes->post('/login', 'UserController::authenticate');
-    $routes->get('/spk', 'UserController::index');
 });
 
-$routes->group('', function ($routes) {
+$routes->get('/spk', 'UserController::index', ['filter' => 'auth']);
+$routes->get('/logout', 'UserController::logout', ['filter' => 'auth']);
+
+$routes->group('', ['filter' => 'admin', 'user'], function ($routes) {
     $routes->get('/category', 'HomeController::category');
     $routes->get('/subcategory', 'HomeController::subcategory');
-    $routes->group('', function ($routes) {
+    $routes->group('', ['filter' => 'admin'], function ($routes) {
         $routes->get('/category/delete', 'HomeController::deleteCategory');
         $routes->get('/category/add', 'HomeController::addCategoryView');
         $routes->post('/category/add', 'HomeController::addCategory');
@@ -54,7 +56,6 @@ $routes->group('', function ($routes) {
     $routes->get('/spk/data', 'SmartController::dataChoosen');
     $routes->get('/spk/final', 'SmartController::spkCount');
     $routes->get('/cempty', 'SmartController::cempty');
-    $routes->get('/logout', 'UserController::logout');
 });
 
 
