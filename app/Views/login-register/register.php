@@ -57,16 +57,17 @@
                 <h1 class="text-3xl font-bold text-purple-700 text-center mb-4 cursor-pointer">REGISTER</h1>
                 <p class="w-80 text-center text-sm mb-8 font-semibold text-gray-700 tracking-wide cursor-pointer">Buatlah akun untuk mengakses fitur website SPK Pemilihan Kambing Kurban</p>
             </div>
-            <div class="space-y-4">
-                <input type="text" placeholder="Email Addres" class="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
-                <input type="text" placeholder="Username" class="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
-                <input type="text" placeholder="Password" class="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
-            </div>
-            <div class="text-center mt-6">
-                <button class="py-3 w-64 text-xl text-white bg-purple-700 hover:bg-purple-500 hover:text-black rounded-2xl">Buat Akun</button>
-                <p class="mt-4 text-sm">Sudah punya akun? <span class="underline cursor-pointer"> Sign In</span>
-                </p>
-            </div>
+            <form action="/register" method="POST">
+                <div class="space-y-4">
+                    <input type="text" name="username" placeholder="Username" class="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
+                    <input type="text" name="password" placeholder="Password" class="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
+                </div>
+                <div class="text-center mt-6">
+                    <button class="px-2 py-1.5 rounded-md w-72 text-white bg-purple-700 hover:bg-purple-500 hover:text-black rounded-2xl">Buat Akun</button>
+                    <div class=""><a href="<?= base_url('/login'); ?>" class="mt-4 text-sm">Sudah punya akun? <span class="underline cursor-pointer"> Sign In</span>
+                    </a></div>
+                </div>
+            </form>
         </div>
         <div class="w-40 h-40 absolute bg-purple-300 rounded-full top-0 right-12 hidden md:block"></div>
             <div class="w-20 h-40 absolute bg-purple-300 rounded-full bottom-20 left-10 transform rotate-45 hidden md:block">
