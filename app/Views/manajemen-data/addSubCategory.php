@@ -6,7 +6,7 @@
         $validator  = session()->getFlashdata('error');
     }?>
 
-    <form action="/category/add" method="POST">
+    <form action="/subcategory/add" method="POST">
         <div class="container w-3/4 py-5 px-5">
             <p class="font-bold mb-2 text-xl">Isilah Data Berikut :</p>
             <hr>

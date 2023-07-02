@@ -15,7 +15,7 @@
 
     // Hashing nilai id untuk mendapatkan indeks warna
     $hash = md5($id);
-    $index = hexdec(substr($hash, 0, 1)) % count($colorClasses);
+    $index = hexdec(substr($hash, 0, 2)) % count($colorClasses);
     return $colorClasses[$index];
     }
     ?>

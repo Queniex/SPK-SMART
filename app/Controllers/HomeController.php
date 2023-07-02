@@ -55,7 +55,7 @@ class HomeController extends BaseController
             session()->setFlashdata('error', $this->validator->getErrors());
             return redirect()->back()->withInput();
         } else {
-            $idUser = session()->get('user')['id'];
+            $idUser = session()->get('logged_in')['id'];
             $nilai_bobot = $this->request->getGetPost('nilai_bobot')/100;
             $this->kategori->insert([
                 'id_user' => $idUser,
@@ -68,7 +68,6 @@ class HomeController extends BaseController
 
     public function addSubCategoryView()
     {
-        
         $kategori = $this->kategori->where('id_user', $this->user['id'])->findAll();
         if($kategori){
             $this->data = [
