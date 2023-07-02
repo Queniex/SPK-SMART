@@ -19,7 +19,7 @@ class HomeController extends BaseController
         $this->db      = \Config\Database::connect();
         $this->subkategori = new SubKategori();
         $this->kategori = new Kategori();
-        $this->user = session()->get('user');
+        $this->user = session()->get('logged_in');
         $this->data['session'] = \Config\Services::session();
     }
 
@@ -61,7 +61,6 @@ class HomeController extends BaseController
                 'id_user' => $idUser,
                 'kategori' => $this->request->getGetPost('kategori'),
                 'nilai_bobot' => $nilai_bobot
-
             ]);
             return redirect()->back();
         }
@@ -70,7 +69,7 @@ class HomeController extends BaseController
     public function addSubCategoryView()
     {
         
-        $kategori = $this->kategori->where('id_user', 2)->findAll();
+        $kategori = $this->kategori->where('id_user', $this->user['id'])->findAll();
         if($kategori){
             $this->data = [
                 "judul" => "TAMBAH SUB-KATEGORI [+]",
@@ -78,7 +77,10 @@ class HomeController extends BaseController
             ];
             echo view('manajemen-data/addSubCategory', $this->data);
         }else{
-            return view('errors/kempty');
+            $this->data = [
+                "judul" => "LIST KATEGORI",
+            ];
+            return view('errors/kempty', $this->data);
         }
     }
 
@@ -124,7 +126,10 @@ class HomeController extends BaseController
         ];
         echo view('manajemen-data/subcategory',$this->data);
     }else{
-        echo view('errors/kempty');
+        $this->data = [
+            "judul" => "LIST KATEGORI",
+        ];
+        return view('errors/kempty', $this->data);
     }
     }
 
@@ -135,7 +140,10 @@ class HomeController extends BaseController
             "kategori" => $kategori,
         ];
         if(!$kategori){
-            return view('errors/kempty');
+            $this->data = [
+                "judul" => "LIST KATEGORI",
+            ];
+            return view('errors/kempty', $this->data);
         }else{
             return view('manajemen-data/category', $this->data);
         }

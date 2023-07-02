@@ -30,6 +30,8 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
+$routes->get('/', 'UserController::login', ['filter' => 'guest']);
+
 $routes->group('', ['filter' => 'guest'], function ($routes) {
     $routes->get('/register', 'UserController::register');
     $routes->post('/register', 'UserController::store');
@@ -40,16 +42,14 @@ $routes->group('', ['filter' => 'guest'], function ($routes) {
 $routes->get('/spk', 'UserController::index', ['filter' => 'auth']);
 $routes->get('/logout', 'UserController::logout', ['filter' => 'auth']);
 
-$routes->group('', ['filter' => 'admin', 'user'], function ($routes) {
+$routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('/category', 'HomeController::category');
     $routes->get('/subcategory', 'HomeController::subcategory');
-    $routes->group('', ['filter' => 'admin'], function ($routes) {
-        $routes->get('/category/delete', 'HomeController::deleteCategory');
-        $routes->get('/category/add', 'HomeController::addCategoryView');
-        $routes->post('/category/add', 'HomeController::addCategory');
-        $routes->get('/subcategory/add', 'HomeController::addSubCategoryView');
-        $routes->post('/subcategory/add', 'HomeController::addSubCategory');
-    });
+    $routes->get('/category/delete', 'HomeController::deleteCategory');
+    $routes->get('/category/add', 'HomeController::addCategoryView');
+    $routes->post('/category/add', 'HomeController::addCategory');
+    $routes->get('/subcategory/add', 'HomeController::addSubCategoryView');
+    $routes->post('/subcategory/add', 'HomeController::addSubCategory');
     $routes->get('/spk/data/delete', 'SmartController::deleteDataChoosen');
     $routes->get('/spk/choose', 'SmartController::index');
     $routes->post('/spk/choose', 'SmartController::chooseDataAction');

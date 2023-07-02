@@ -23,7 +23,7 @@ class SmartController extends BaseController
         $this->subkategori = new SubKategori();
         $this->kategori = new Kategori();
         $this->data['session'] = \Config\Services::session();
-        $this->user = session()->get('user');
+        $this->user = session()->get('logged_in');
     }
     public function index()
     {
@@ -37,9 +37,9 @@ class SmartController extends BaseController
     public function chooseDataAction()
     {
         $data = $this->getSubCategory();
-        if ($this->chooseData->where('id_user', '2')->orderBy('num_choose', 'desc')->first() != null) {
+        if ($this->chooseData->where('id_user', $this->user['id'])->orderBy('num_choose', 'desc')->first() != null) {
 
-            $numChoose = (int) $this->chooseData->where('id_user', '2')->orderBy('num_choose', 'desc')->first()['num_choose']   + 1;
+            $numChoose = (int) $this->chooseData->where('id_user', $this->user['id'])->orderBy('num_choose', 'desc')->first()['num_choose']   + 1;
         } else {
             $numChoose = 1;
         }
@@ -54,7 +54,7 @@ class SmartController extends BaseController
                 $subkategori = $this->subkategori->Where('subkategori', $this->request->getGetPost(str_replace(" ", "_", $item['kategori'])))->first();
                 $this->chooseData->insert([
                     'num_choose' => $numChoose,
-                    'id_user' => '2',
+                    'id_user' => $this->user['id'],
                     'id_subkategori' => $subkategori['id']
                 ]);
             }
@@ -64,7 +64,7 @@ class SmartController extends BaseController
     }
     public function dataChoosen()
     {
-        $query = $this->db->query("SELECT choose_data.id, subkategori.subkategori, kategori.kategori,choose_data.num_choose FROM subkategori JOIN choose_data ON subkategori.id = choose_data.id_subkategori JOIN kategori ON subkategori.id_kategori = kategori.id WHERE choose_data.id_user = '2' " . " ORDER BY choose_data.num_choose ASC, kategori.kategori DESC ;")->getResult();
+        $query = $this->db->query("SELECT choose_data.id, subkategori.subkategori, kategori.kategori,choose_data.num_choose FROM subkategori JOIN choose_data ON subkategori.id = choose_data.id_subkategori JOIN kategori ON subkategori.id_kategori = kategori.id WHERE choose_data.id_user = " . $this->user['id'] .  " ORDER BY choose_data.num_choose ASC, kategori.kategori DESC ;")->getResult();
 
         $temp = null;
         $data = [];
@@ -109,7 +109,7 @@ class SmartController extends BaseController
 
     public function spkCount()
     {
-        $query = $this->db->query("SELECT subkategori.subkategori,subkategori.id_kategori,subkategori.nilai_subkategori, kategori.kategori,choose_data.num_choose FROM subkategori JOIN choose_data ON subkategori.id = choose_data.id_subkategori JOIN kategori ON subkategori.id_kategori = kategori.id WHERE choose_data.id_user = 2" . " ORDER BY choose_data.num_choose ASC, kategori.kategori DESC ;")->getResult();
+        $query = $this->db->query("SELECT subkategori.subkategori,subkategori.id_kategori,subkategori.nilai_subkategori, kategori.kategori,choose_data.num_choose FROM subkategori JOIN choose_data ON subkategori.id = choose_data.id_subkategori JOIN kategori ON subkategori.id_kategori = kategori.id WHERE choose_data.id_user = " . $this->user['id']. " ORDER BY choose_data.num_choose ASC, kategori.kategori DESC ;")->getResult();
 
       
         if ($query) {
@@ -264,7 +264,7 @@ class SmartController extends BaseController
     }
 
     public function deleteDataChoosen(){
-        $data = $this->chooseData->where('id_user',2)->findAll();
+        $data = $this->chooseData->where('id_user', $this->user['id'])->findAll();
         foreach ($data as $key) {
             $this->chooseData->delete($key['id']);
         }
@@ -272,6 +272,9 @@ class SmartController extends BaseController
     }
 
     public function cempty(){
-        echo view('errors/cempty');
+        $this->data = [
+            "judul" => "LIST DATA TERPILIH",
+        ];
+        return view('errors/cempty', $this->data);
     }
 }

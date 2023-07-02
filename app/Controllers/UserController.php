@@ -156,4 +156,17 @@ class UserController extends BaseController
         return redirect()->to(base_url('/login'))->with('not_found', 'Username atau password salah');
     }
 
+    public function kempty()
+    {
+        // helper('form');
+        // $this->data['validation'] = \Config\Services::validation();
+        // d($this->session);
+        // d($this->data['validation']);
+        //
+        $this->data = [
+            "judul" => "Kategori Kosong"
+        ];
+        return view('errors/kempty', $this->data);
+    }
+
 }
