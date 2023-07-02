@@ -1,6 +1,11 @@
 <?= $this->extend('dashboard/templates/main'); ?>
 
 <?= $this->section('content'); ?>
+    <?php use PHPUnit\Util\Xml\Validator;
+    if (session()->getFlashdata('error')) {
+        $validator  = session()->getFlashdata('error');}
+    ?>
+
     <form action="/spk/choose" method="POST">
         <div class="container w-3/4 py-5 px-5">
             <p class="font-bold mb-2 text-xl">Isilah Data Berikut :</p>
@@ -17,7 +22,7 @@
 
                         <?php endforeach; ?>
                     </select>
-                    <p><?= isset($validator) ? (array_key_exists(str_replace(" ", "_",$item['kategori']), $validator) ? $validator['kategori'] : null) : null ?></p>
+                    <p class="text-red-500"><?= isset($validator) ? (array_key_exists(str_replace(" ", "_",$item['kategori']), $validator) ? $validator['kategori'] : null) : null ?></p>
                 </div>
             <?php endforeach; ?>
          

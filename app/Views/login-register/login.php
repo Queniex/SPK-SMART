@@ -47,8 +47,12 @@
       </style>
 </head>
 <body>
-  <!-- component -->
-<!-- Container -->
+
+  <?php use PHPUnit\Util\Xml\Validator;
+    if (session()->getFlashdata('error')) {
+        $validator  = session()->getFlashdata('error');
+    }?>
+
 <div class="flex flex-wrap min-h-screen w-full content-center justify-center py-10">
         <div class="absolute w-60 h-60 rounded-xl bg-purple-300 -top-5 -left-16 z-0 transform rotate-45 hidden md:block">
         </div>
@@ -68,11 +72,13 @@
           <div class="mb-3">
             <label class="mb-2 block text-xs font-semibold">Username</label>
             <input type="text" name="username" placeholder="Masukan Username" class="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500 text-sm" />
+            <p class="text-red-500"><?= isset($validator) ? (array_key_exists('username', $validator) ? $validator['username'] : null) : null ?></p>
           </div>
 
           <div class="mb-3">
             <label class="mb-2 block text-xs font-semibold">Password</label>
             <input type="password" name="password" placeholder="*****" class="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-1.5 text-gray-500 text-sm" />
+            <p class="text-red-500"><?= isset($validator) ? (array_key_exists('password', $validator) ? $validator['password'] : null) : null ?></p>
           </div>
 
           <!-- <div class="mb-3 flex flex-wrap content-center">

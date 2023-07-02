@@ -69,7 +69,7 @@ class UserController extends BaseController
             "role" => "user"
         ];
 
-        $rulesSet = [
+        if (!$this->validate([
             "username" => [
                 "rules" => "required|max_length[8]|is_unique[user.username]",
                 "errors" => [
@@ -83,11 +83,9 @@ class UserController extends BaseController
                 "errors" => [
                     "required" => "Harap isi password terlebih dahulu"
                 ]
-            ],
-        ];
-
-        // dd($this->validate($rulesSet));
-        if (!$this->validate($rulesSet)) {
+            ]
+        ])) {
+            session()->setFlashdata('error', $this->validator->getErrors());
             return redirect()->to(base_url('/register'))->withInput();
         }
 
@@ -105,7 +103,7 @@ class UserController extends BaseController
             "password" => esc($dataInput['password']),
         ];
 
-        $rulesSet = [
+        if (!$this->validate([
             "username" => [
                 "rules" => "required",
                 "errors" => [
@@ -118,9 +116,8 @@ class UserController extends BaseController
                     "required" => "Harap isi password terlebih dahulu"
                 ]
             ],
-        ];
-
-        if (!$this->validate($rulesSet)) {
+        ])) {
+            session()->setFlashdata('error', $this->validator->getErrors());
             return redirect()->to(base_url('/login'))->withInput();
         }
 

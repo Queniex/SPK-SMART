@@ -47,6 +47,12 @@
         </style>
 </head>
 <body>
+     
+    <?php use PHPUnit\Util\Xml\Validator;
+    if (session()->getFlashdata('error')) {
+        $validator  = session()->getFlashdata('error');
+    }?>   
+
     <div class="flex flex-wrap min-h-screen w-full flex justify-center items-center">
         <div class="absolute w-60 h-60 rounded-xl bg-purple-300 -top-5 -left-16 z-0 transform rotate-45 hidden md:block">
         </div>
@@ -60,7 +66,9 @@
             <form action="/register" method="POST">
                 <div class="space-y-4">
                     <input type="text" name="username" placeholder="Username" class="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
+                    <p class="text-red-500"><?= isset($validator) ? (array_key_exists('username', $validator) ? $validator['username'] : null) : null ?></p>
                     <input type="text" name="password" placeholder="Password" class="block text-sm py-3 px-4 rounded-lg w-full border outline-none" />
+                    <p class="text-red-500"><?= isset($validator) ? (array_key_exists('password', $validator) ? $validator['password'] : null) : null ?></p>
                 </div>
                 <div class="text-center mt-6">
                     <button class="px-2 py-1.5 rounded-md w-72 text-white bg-purple-700 hover:bg-purple-500 hover:text-black rounded-2xl">Buat Akun</button>
