@@ -1,7 +1,11 @@
 <?= $this->extend('dashboard/templates/main'); ?>
 
 <?= $this->section('content'); ?>
-
+<?php if(session()->getFlashdata('pesan')) : ?>
+    <div class="alert alert-<?= session()->getFlashdata('warna'); ?>" role="alert">
+        <?= session()->getFlashdata('pesan'); ?>
+    </div>
+<?php endif; ?>
 <div class="w-full flex flex-col h-screen overflow-y-hidden">
     <div class="min-w-screen min-h-screen bg-gray-100 grid justify-items-center bg-gray-100 font-sans overflow-hidden">
         <div class="w-full mt-5 lg:w-5/6">

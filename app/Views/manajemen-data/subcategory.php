@@ -19,7 +19,11 @@
     return $colorClasses[$index];
     }
     ?>
-
+    <?php if(session()->getFlashdata('pesan')) : ?>
+        <div class="alert alert-<?= session()->getFlashdata('warna'); ?>" role="alert">
+            <?= session()->getFlashdata('pesan'); ?>
+        </div>
+    <?php endif; ?>
     <div class="w-full flex flex-col h-screen">
         <div class="min-w-screen h-screen grid justify-items-center font-sans">
             <div class="w-full mt-7 lg:w-5/6">
@@ -32,6 +36,7 @@
                                 <th class="py-3 px-6 text-white text-center">Nilai Bobot</th>
                                 <th class="py-3 px-6 text-white text-left">Sub-Kategori</th>
                                 <th class="py-3 px-6 text-white text-center">Nilai Sub-Kategori</th>
+                                <th class="py-3 px-6 text-white text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody class="text-gray-600 text-sm font-light">
@@ -61,6 +66,11 @@
                                 <td class="py-3 px-6 text-center">
                                     <span class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs font-bold">
                                         <?= $item->nilai_subkategori; ?></span>
+                                </td>
+                                <td class="py-3 px-6 text-center">
+                                    <a href="<?= base_url('subcategory/update/'.$item->id)?>" class="relative hover:text-black text-sm text-green-700 px-4 py-2  font-bold focus:text-indigo">Edit</a>  
+                                    || 
+                                    <a href="<?= base_url('category/delete/'.$item->id)?>" class="relative hover:text-black text-sm text-red-500 px-4 py-2  font-bold focus:text-indigo">Delete</a>  
                                 </td>
                             </tr>
                             <?php $i++ ?>

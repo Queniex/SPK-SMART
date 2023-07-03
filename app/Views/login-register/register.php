@@ -53,6 +53,12 @@
         $validator  = session()->getFlashdata('error');
     }?>   
 
+    <?php if(session()->getFlashdata('pesan')) : ?>
+        <div class="alert alert-<?= session()->getFlashdata('warna'); ?>" role="alert">
+            <?= session()->getFlashdata('pesan'); ?>
+        </div>
+    <?php endif; ?>
+
     <div class="flex flex-wrap min-h-screen w-full flex justify-center items-center">
         <div class="absolute w-60 h-60 rounded-xl bg-purple-300 -top-5 -left-16 z-0 transform rotate-45 hidden md:block">
         </div>

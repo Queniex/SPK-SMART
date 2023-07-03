@@ -1,6 +1,11 @@
 <header class="w-full items-center bg-white py-2 px-6 hidden sm:flex">
   <div class="w-1/2">
-    <h1><?= $judul; ?></h1>
+    <h1>
+      <?= $judul; ?>
+      <?php if($judul == 'HASIL PERHITUNGAN'): ?>
+      || <span><input value="Cetak Halaman" class="bg-green-300 w-40 px-4 hover:bg-green-500 border border-black cursor-pointer" onclick="window.open('<?php echo base_url('spk/printpdf/') ?>')"></input></span>
+      <?php endif; ?>
+    </h1>
   </div>
   <div x-data="{ isOpen: false }" class="relative w-1/2 flex justify-end">
     <button @click="isOpen = !isOpen"

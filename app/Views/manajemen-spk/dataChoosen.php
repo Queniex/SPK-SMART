@@ -57,22 +57,26 @@
                                                             }
                                                             ?>">
                                                 <?= $i++; ?>
+                                                <div class="bg-red-500 border border-black rounded-3xl text-black bg hover:bg-white cursor-pointer">
+                                                    <a href="<?= base_url('spk/data/delete/'.$item['num_choose'])?>">Delete</a>
+                                                </div>
                                             </td>
                                             <?php $temp = $item['num_choose'];?>
                                         <?php endif; ?>
-                                        <td class="py-3 px-6 text-left">
+                                        <td class="py-3 px-6 text-left hover:bg-gray-400">
                                             <div class="flex items-center">
                                                 <?= $item['kategori'][$j] ?>
                                             </div>
                                         </td>
-                                        <td class="py-3 px-6 text-center">
+                                        <td class="py-3 px-6 text-center hover:bg-gray-400">
                                             <span class="font-bold">
                                                 <?= $item['subkategori'][$j] ?></span>
                                         </td>
                                         <?php $temp = $item['num_choose']; ?>
                                     </tr>
                                 <?php endfor; ?>
-                            <?php endforeach; ?>    
+                            <?php endforeach; ?>   
+                                                            
                         </tbody>
                     </table>
                 </div>
