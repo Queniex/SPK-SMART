@@ -78,21 +78,21 @@
                         </thead>
                         <tbody class="text-gray-600 text-sm font-light">
                             <?php for ($k=0; $k < count($nilai_spk['nilai_spk']);$k++) : ?>
-                                <tr class="border-solid border-2 border-black <?php echo $nilai_spk['status'][$k] == "Sangat Direkomendasikan" ? "bg-green-400" : '' ?> hover:bg-gray-400 hover:text-white even:bg-gray-200">
-                                        <td class="py-3 px-6 text-center"> 
+                                <tr class="border-solid border-2 border-black hover:bg-gray-400 hover:text-white even:bg-gray-200">
+                                        <td class="py-3 px-6 text-center <?php echo $nilai_spk['status'][$k] == "Sangat Direkomendasikan" ? "bg-green-500" : '' ?>"> 
                                             <?= $nilai_spk['num_choose'][$k]; ?>
                                         </td>
-                                    <td class="py-3 px-6 text-left">
+                                    <td class="py-3 px-6 text-left <?php echo $nilai_spk['status'][$k] == "Sangat Direkomendasikan" ? "bg-green-500" : '' ?>">
                                         <div class="flex items-center">
                                             <?= $nilai_spk['nilai_spk'][$k]; ?>
                                         </div>
                                     </td>
-                                    <td class="py-3 px-6 text-center">
+                                    <td class="py-3 px-6 text-center <?php echo $nilai_spk['status'][$k] == "Sangat Direkomendasikan" ? "bg-green-500" : '' ?>">
                                         <span class="font-bold">
                                             <?= $nilai_spk['status'][$k]; ?>    
                                         </span>
                                     </td>
-                                </tr>        
+                                </tr>    
                             <?php endfor; ?>                                   
                         </tbody>
                     </table>                                        

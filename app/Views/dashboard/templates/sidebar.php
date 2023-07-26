@@ -50,7 +50,7 @@
                   class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - List SubKategori</a>
               </li>
               <li>
-                <a href="<?= base_url('/category/add'); ?>"
+                <a href="<?= base_url('/category/addCategory'); ?>"
                   class="flex items-center w-full p-2 font-normal text-black transition duration-75 rounded-lg group hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700 pl-7"> - [+] Kategori</a>
               </li>
               <li>

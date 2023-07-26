@@ -22,6 +22,14 @@ class UserController extends BaseController
         // $this->data['session'] = \Config\Services::session();
     }
 
+    public function landing_page()
+    {
+        $this->data = [
+            "data" => $this->kategori->findAll()
+        ];
+        return view('landing-page/index', $this->data);
+    }
+
     public function index()
     {
         //

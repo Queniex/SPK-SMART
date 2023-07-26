@@ -70,7 +70,7 @@
                                 <td class="py-3 px-6 text-center">
                                     <a href="<?= base_url('subcategory/update/'.$item->id)?>" class="relative hover:text-black text-sm text-green-700 px-4 py-2  font-bold focus:text-indigo">Edit</a>  
                                     || 
-                                    <a href="<?= base_url('category/delete/'.$item->id)?>" class="relative hover:text-black text-sm text-red-500 px-4 py-2  font-bold focus:text-indigo">Delete</a>  
+                                    <a href="<?= base_url('subcategory/delete/'.$item->id)?>" class="relative hover:text-black text-sm text-red-500 px-4 py-2  font-bold focus:text-indigo">Delete</a>  
                                 </td>
                             </tr>
                             <?php $i++ ?>

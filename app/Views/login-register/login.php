@@ -107,7 +107,7 @@
 
     <!-- Login banner -->
     <div class="flex flex-wrap content-center justify-center rounded-r-md" style="width: 24rem; height: 32rem;">
-      <img class="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md" src="https://i.postimg.cc/d10n2MsJ/sheep2.jpg">
+      <img class="w-full h-full bg-center bg-no-repeat bg-cover rounded-r-md" src="https://i.pinimg.com/564x/a8/41/70/a841701336a0dd1cdc35cbfb0cde3707.jpg">
     </div>
 
   </div>

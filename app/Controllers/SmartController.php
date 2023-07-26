@@ -110,7 +110,7 @@ class SmartController extends BaseController
 
     public function spkCount()
     {
-        $query = $this->db->query("SELECT subkategori.subkategori,subkategori.id_kategori,subkategori.nilai_subkategori, kategori.kategori,choose_data.num_choose FROM subkategori JOIN choose_data ON subkategori.id = choose_data.id_subkategori JOIN kategori ON subkategori.id_kategori = kategori.id WHERE choose_data.id_user = " . $this->user['id']. " ORDER BY choose_data.num_choose ASC, kategori.kategori DESC ;")->getResult();
+        $query = $this->db->query("SELECT subkategori.subkategori,subkategori.id_kategori,subkategori.nilai_subkategori, kategori.kategori,choose_data.num_choose,kategori.status FROM subkategori JOIN choose_data ON subkategori.id = choose_data.id_subkategori JOIN kategori ON subkategori.id_kategori = kategori.id WHERE choose_data.id_user = " . $this->user['id']. " ORDER BY choose_data.num_choose ASC, kategori.kategori DESC ;")->getResult();
 
       
         if ($query) {
@@ -128,9 +128,9 @@ class SmartController extends BaseController
                 if($penyebut == 0 && $pembilang == 0){
                     $bobot_utility = 0;
                 }else{
-                    if($item->kategori == 'Usia' || $item->kategori == 'Gender' || $item->kategori == 'Berat') {
+                    if($item->status == 'benefit') {
                         $bobot_utility = $pembilang1 / $penyebut;
-                    }else if($item->kategori == 'Harga') {
+                    }else if($item->status == 'cost') {
                         $bobot_utility = $pembilang2 / $penyebut;
                     }
                 }
@@ -286,7 +286,7 @@ class SmartController extends BaseController
             return redirect()->to('/spk/data');
         }
 
-        $query = $this->db->query("SELECT subkategori.subkategori,subkategori.id_kategori,subkategori.nilai_subkategori, kategori.kategori,choose_data.num_choose FROM subkategori JOIN choose_data ON subkategori.id = choose_data.id_subkategori JOIN kategori ON subkategori.id_kategori = kategori.id WHERE choose_data.id_user = " . $this->user['id']. " ORDER BY choose_data.num_choose ASC, kategori.kategori DESC ;")->getResult();
+        $query = $this->db->query("SELECT subkategori.subkategori,subkategori.id_kategori,subkategori.nilai_subkategori, kategori.kategori,choose_data.num_choose, kategori.status FROM subkategori JOIN choose_data ON subkategori.id = choose_data.id_subkategori JOIN kategori ON subkategori.id_kategori = kategori.id WHERE choose_data.id_user = " . $this->user['id']. " ORDER BY choose_data.num_choose ASC, kategori.kategori DESC ;")->getResult();
 
         if ($query) {
             $temp = null;
@@ -303,9 +303,9 @@ class SmartController extends BaseController
                 if($penyebut == 0 && $pembilang == 0){
                     $bobot_utility = 0;
                 }else{
-                    if($item->kategori == 'Usia' || $item->kategori == 'Gender' || $item->kategori == 'Berat') {
+                    if($item->status == 'benefit') {
                         $bobot_utility = $pembilang1 / $penyebut;
-                    }else if($item->kategori == 'Harga') {
+                    }else if($item->status == 'cost') {
                         $bobot_utility = $pembilang2 / $penyebut;
                     }
                 }

@@ -30,7 +30,9 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-$routes->get('/', 'UserController::login', ['filter' => 'guest']);
+// $routes->get('/', 'UserController::login', ['filter' => 'guest']);
+$routes->get('/', 'UserController::landing_page', ['filter' => 'guest']);
+// $routes->get('/home', 'UserController::login', ['filter' => 'guest']);
 
 $routes->group('', ['filter' => 'guest'], function ($routes) {
     $routes->get('/register', 'UserController::register');
@@ -45,10 +47,10 @@ $routes->get('/logout', 'UserController::logout', ['filter' => 'auth']);
 $routes->group('', ['filter' => 'auth'], function ($routes) {
     $routes->get('/category', 'HomeController::category');
     $routes->get('/subcategory', 'HomeController::subcategory');
-    $routes->get('/category/(:any)', 'HomeController::$1');
+    // $routes->get('/subcategory/(:any)', 'HomeController::$1');
     $routes->get('/category/delete', 'HomeController::deleteCategory');
-    $routes->get('/category/add', 'HomeController::addCategoryView');
-    $routes->post('/category/add', 'HomeController::addCategory');
+    $routes->get('/category/addCategory', 'HomeController::addCategoryView');
+    $routes->post('/category/addCategory', 'HomeController::addCategory');
     $routes->get('/subcategory/add', 'HomeController::addSubCategoryView');
     $routes->get('/subcategory/(:any)', 'HomeController::$1');
     $routes->post('/subcategory/add', 'HomeController::addSubCategory');

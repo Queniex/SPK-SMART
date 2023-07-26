@@ -43,13 +43,16 @@ class HomeController extends BaseController
     {
         if (!$this->validate([
             'kategori' => [
-                'rules' => 'required', "errors" => [
-                    'required' => "field ketegori harus diisi"
+                'rules' => 'required|alpha', "errors" => [
+                    'required' => "field ketegori harus diisi",
+                    'alpha' => 'Field kategori hanya boleh berisi huruf'
                 ]
             ],
 
-            "nilai_bobot" => ["rules" => 'required|numeric', "errors" => [
-                "required" => "field nilai bobot harus diisi"
+            "nilai_bobot" => ["rules" => 'required|numeric|greater_than_equal_to[0]', "errors" => [
+                "required" => "field nilai bobot harus diisi",
+                'numeric' => 'Field nilai bobot harus berupa angka',
+                'greater_than_equal_to' => 'Field nilai bobot tidak boleh kurang dari 0'
             ]]
         ])) {
             session()->setFlashdata('error', $this->validator->getErrors());
@@ -60,6 +63,7 @@ class HomeController extends BaseController
             $this->kategori->insert([
                 'id_user' => $idUser,
                 'kategori' => $this->request->getGetPost('kategori'),
+                'status' => $this->request->getGetPost('status'),
                 'nilai_bobot' => $nilai_bobot
             ]);
             return redirect()->back();
@@ -111,12 +115,15 @@ class HomeController extends BaseController
                         'required' => "field ketegori harus diisi"
                     ]
                 ],
-                "subkategori" => ["rules" => 'required', "errors" => [
-                    "required" => "field subkategori harus diisi"
+                "subkategori" => ["rules" => 'required|alpha', "errors" => [
+                    "required" => "field subkategori harus diisi",
+                    'alpha' => 'Field kategori hanya boleh berisi huruf'
                 ]],
 
-                "nilai_subkategori" => ["rules" => 'required|numeric', "errors" => [
-                    "required" => "field nilai utility harus diisi"
+                "nilai_subkategori" => ["rules" => 'required|numeric|greater_than_equal_to[0]', "errors" => [
+                    "required" => "field nilai utility harus diisi",
+                    'numeric' => 'Field nilai bobot harus berupa angka',
+                    'greater_than_equal_to' => 'Field nilai bobot tidak boleh kurang dari 0'
                 ]]
             ])) {
                 session()->setFlashdata('error', $this->validator->getErrors());
@@ -183,16 +190,16 @@ class HomeController extends BaseController
     }
 
     public function delete($id=''){
-        if(empty($id)){
-            $this->db->query('DELETE FROM subkategori');
-            $this->db->query("DELETE FROM kategori");
-            return redirect()->back();
-        }
-
         $delete = $this->subkategori->delete($id);
         if($delete){
             return redirect()->back();
         }
+    }
+
+    public function deleteCategory(){
+        $this->db->query('DELETE FROM subkategori');
+        $this->db->query("DELETE FROM kategori");
+        return redirect()->back();
     }
 
 }
