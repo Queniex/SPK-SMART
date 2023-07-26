@@ -34,7 +34,7 @@
             Sistem Layanan Bantuan
           </p>
           <p class="text-base text-gray-700 md:text-lg">
-            Pencarian Keputusan Pemilihan <span class="font-bold">Kambing</span> Kurban
+            Pencarian Keputusan Pemilihan <span class="font-bold">Kambing</span> Terbaik
           </p>
         </div>
         <div
@@ -98,7 +98,7 @@
 
         </div>
         <p class="mx-auto text-gray-600 sm:text-center lg:max-w-2xl lg:mb-6 md:px-16">
-          Sistem ini bertujuan untuk membantu lembaga terkait dalam proses identifikasi dan seleksi hewan kurban
+          Sistem ini bertujuan untuk membantu lembaga terkait dalam proses identifikasi dan pemilihan kambing terbaik
         </p>
 
        

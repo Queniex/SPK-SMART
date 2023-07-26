@@ -93,9 +93,9 @@
             </div>
             <div class="h-full w-full md:w-3/6">
                 <h1 class="text-2xl mt-2 md:mt-0 sm:text-4xl md:text-6xl font-bold leading-tight">
-                    Pemilihan <span class="text-purple-600">Kambing-Ku</span>(rban) SPK SMART
+                    Pemilihan <span class="text-purple-600">Kambing</span> SPK SMART
                 </h1>
-                <p class="text-gray-600 mb-6 mt-2">Sistem ini membantu lembaga terkait dalam proses identifikasi dan seleksi hewan kurban secara cepat, tepat, dan efisien!</p>
+                <p class="text-gray-600 mb-6 mt-2">Sistem ini membantu lembaga terkait dalam proses identifikasi dan pemilihan kambing terbaik secara cepat, tepat, dan efisien!</p>
                 <a href="#alternatif" class="px-6 py-2 text-sm font-semibold text-purple-600 bg-white border hover:bg-purple-500 hover:text-white border-purple-500 mr-2 rounded-md">Lebih Detail</a>
             </div>
            
