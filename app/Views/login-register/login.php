@@ -71,7 +71,7 @@
       <div class="w-72">
         <!-- Heading -->
         <h4 class="text-gray-400 text-sm text-center">Selamat Datang Kembali!</h4>
-        <h1 class="text-xl font-semibold text-center">SPK Rekomendasi Pemilihan <span class="text-purple-700">Kambing</span> Kurban</h1>
+        <h1 class="text-xl font-semibold text-center">SPK Rekomendasi Pemilihan <span class="text-purple-700">Kambing</span> Terbaik</h1>
 
         <!-- Form -->
         <form action="/login" method="POST" class="mt-10">
